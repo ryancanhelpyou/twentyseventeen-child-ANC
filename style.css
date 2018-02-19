@@ -5,10 +5,50 @@
  Author:         Edward Zivkovic
  Author URI:     http://www.ezau.com/
  Template:       twentyseventeen
- Version:        1.0.0
+ Version:        1.0.101
 */
 
 /* Add Custom CSS after this line */
 p {
   margin: 1em 0;
+}
+
+/* FOOTER STYLES */
+footer {
+  background-color: #E5E5E5;
+  padding: 60px 0 45px 0;
+}
+
+.site-footer .wrap {
+  padding: auto;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.site-footer .widget-column.footer-widget-1, .site-footer .widget-column.footer-widget-2 {
+  float: none;
+  width: auto;
+}
+
+footer .widget {
+  padding-bottom: 0;
+}
+
+footer .widget ul  {
+  list-style-type: none;
+  margin: 0;
+}
+
+footer .widget ul li, .site-info  {
+  float: left;
+  margin-right: 3%;
+}
+
+footer .widget ul li:last-child {
+  margin-right: 0;
+}
+
+.site-info, .footer-nav {
+  width: auto;
+  text-transform: uppercase;
 }

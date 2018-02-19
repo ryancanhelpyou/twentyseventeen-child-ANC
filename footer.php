@@ -33,10 +33,7 @@
 							) );
 						?>
 					</nav><!-- .social-navigation -->
-				<?php endif;
-
-				get_template_part( 'template-parts/footer/site', 'info' );
-				?>
+				<?php endif; ?>
 			</div><!-- .wrap -->
 		</footer><!-- #colophon -->
 	</div><!-- .site-content-contain -->
