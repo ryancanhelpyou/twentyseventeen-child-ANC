@@ -70,7 +70,7 @@ get_header(); ?>
 				'meta_query' => array(
 					 array(
 							'key'		=> 'final_display_date',
-							'compare'	=> '<=',
+							'compare'	=> '<',
 							'value'		=> $today,
 					)
 				),
