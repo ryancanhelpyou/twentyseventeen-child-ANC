@@ -12,48 +12,104 @@
 
 get_header(); ?>
 
+<?php
+// set variables
+	$status = get_post_meta(get_the_ID(), 'status', true);
+?>
+
+
+
 <div class="wrap">
 
-	<?php if ( have_posts() ) : ?>
-		<header class="page-header">
-			<h1 class="page-title">Current Exhibitions</h1>
+		<div id="primary" class="content-area">
+			<main id="main" class="site-main" role="main">
+	<?php
+		// WP_Query arguments
+		$today = date('Ymd');
+
+		$args_current = array (
+		    'post_type' => 'exhibitions',
+		    'meta_query' => array(
+			     array(
+			        'key'		=> 'final_display_date',
+			        'compare'	=> '>=',
+			        'value'		=> $today,
+			    )
+		    ),
+		);
+
+		// The Query
+		$querycurrent = new WP_Query( $args_current );
+
+		// The Loop
+		if ( $querycurrent->have_posts() ) {
+
+			echo '<h1 class="page-title">Current Exhibitions</h1>';
+
+			while ( $querycurrent->have_posts() ) {
+				$querycurrent->the_post();
+				// do something
+
+				get_template_part( 'template-parts/post/content-exhibitionsarc', get_post_format() );
+
+			}
+		} else {
+			// no posts found
+		}
+
+		// Restore original Post Data
+		wp_reset_postdata();
+	?>
+
+<hr>
+
+	<div class="past-exh">
+	<?php
+		$args_past = array (
+				'post_type' => 'exhibitions',
+				'meta_query' => array(
+					 array(
+							'key'		=> 'final_display_date',
+							'compare'	=> '<=',
+							'value'		=> $today,
+					)
+				),
+		);
+
+		// The Query
+		$querypast = new WP_Query( $args_past );
+
+		// The Loop
+		if ( $querypast->have_posts() ) {
+
+			echo '<h1 class="page-title">Past Exhibitions</h1>';
+
+			while ( $querypast->have_posts() ) {
+				$querypast->the_post();
+				// do something
+
+				get_template_part( 'template-parts/post/content-exhibitionsarc', get_post_format() );
+
+			}
+		} else {
+			// no posts found
+		}
+
+		// Restore original Post Data
+		wp_reset_postdata();
+	?>
+</div>
+
+
+
 			<?php
-
-				// the_archive_title( '<h1 class="page-title">', '</h1>' );
-				the_archive_description( '<div class="taxonomy-description">', '</div>' );
-			?>
-		</header><!-- .page-header -->
-	<?php endif; ?>
-
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
-
-		<?php
-		if ( have_posts() ) : ?>
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) : the_post();
-
-				/*
-				 * Include the Post-Format-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/post/content-exhibitions', get_post_format() );
-
-			endwhile;
 
 			the_posts_pagination( array(
 				'prev_text' => twentyseventeen_get_svg( array( 'icon' => 'arrow-left' ) ) . '<span class="screen-reader-text">' . __( 'Previous page', 'twentyseventeen' ) . '</span>',
 				'next_text' => '<span class="screen-reader-text">' . __( 'Next page', 'twentyseventeen' ) . '</span>' . twentyseventeen_get_svg( array( 'icon' => 'arrow-right' ) ),
 				'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'twentyseventeen' ) . ' </span>',
 			) );
-
-		else :
-
-			get_template_part( 'template-parts/post/content', 'none' );
-
-		endif; ?>
+			?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->

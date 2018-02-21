@@ -5,7 +5,7 @@
  Author:         Edward Zivkovic
  Author URI:     http://www.ezau.com/
  Template:       twentyseventeen
- Version:        1.0.12332
+ Version:        1.0.132
 */
 
 /* Add Custom CSS after this line */
@@ -41,6 +41,9 @@
     padding: 3em 0 0;
   }
 
+  body:not(.twentyseventeen-front-page) .entry-header {
+    padding: 0;
+  }
 
 
 /* FOOTER STYLES */
@@ -84,14 +87,34 @@
 }
 
 
-/* EXHIBITIONS */
-.post-type-archive-exhibitions #primary {
+/* EXHIBITIONS - Archive*/
+.post-type-archive-exhibitions #primary, .single-exhibitions #primary {
   width: auto !important;
 }
 
 .post-type-archive-exhibitions article {
+  width: 100% !important;
+}
+
+.post-type-archive-exhibitions article .post-thumbnail {
   float: left;
-  width: 48%;
+  width: 40%;
+  margin-right: 2em;
+}
+
+.post-type-archive-exhibitions article .entry-header {
+  float: left;
+  width: 50%;
+}
+
+.post-type-archive-exhibitions article h2, .single-exhibitions h2 {
+  font-size: 145%;
+  padding: 0 !important;
+}
+
+.post-type-archive-exhibitions article h3 {
+  font-size: 100%;
+  padding: 0;
 }
 
 
@@ -129,6 +152,17 @@
   margin-bottom: 0;
 }
 
+.facetwp-btn {
+  top: 42px !important;
+  left: 190px !important;
+  z-index: 25;
+  position: relative !important;
+}
+
+.facetwp-facet {
+    margin-bottom: 25px !important;
+}
+
 /* OBJECTS - single */
 
 .single-objects #primary {
@@ -148,5 +182,4 @@
 .single-objects .entry-content .label {
   font-size: 75%;
   color: #777;
-  /* text-transform: uppercase; */
 }

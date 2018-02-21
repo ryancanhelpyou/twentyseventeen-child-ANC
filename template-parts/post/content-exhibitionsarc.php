@@ -12,43 +12,32 @@
 
 ?>
 
+
+<?php
+// set variables
+	$subtitle = get_post_meta(get_the_ID(), 'subtitle', true);
+	$datesevents = wpautop(get_post_meta(get_the_ID(), 'dates_events', true));
+	$finaldate = get_post_meta(get_the_ID(), 'final_display_date', true);
+	$status = get_post_meta(get_the_ID(), 'status', true);
+?>
+
+
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php
-	if ( is_sticky() && is_home() ) :
-		echo twentyseventeen_get_svg( array( 'icon' => 'thumb-tack' ) );
-	endif;
-	?>
+
 	<?php if ( '' !== get_the_post_thumbnail() && ! is_single() ) : ?>
 		<div class="post-thumbnail">
 			<a href="<?php the_permalink(); ?>">
-				<?php the_post_thumbnail( 'twentyseventeen-featured-image' ); ?>
+				<?php the_post_thumbnail( 'medium' ); ?>
 			</a>
 		</div><!-- .post-thumbnail -->
 	<?php endif; ?>
 	<header class="entry-header">
 		<?php
-		if ( 'post' === get_post_type() ) {
-			echo '<div class="entry-meta">';
-				if ( is_single() ) {
-					twentyseventeen_posted_on();
-				} else {
-					echo twentyseventeen_time_link();
-					twentyseventeen_edit_link();
-				};
-			echo '</div><!-- .entry-meta -->';
-		};
-
-		if ( is_single() ) {
-			the_title( '<h1 class="entry-title">', '</h1>' );
-		} elseif ( is_front_page() && is_home() ) {
-			the_title( '<h3 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h3>' );
-		} else {
-			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-		}
+		the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
 		?>
+		<h3><?php echo $subtitle; ?></h3>
+		<p><?php echo $datesevents ?></p>
 	</header><!-- .entry-header -->
-
-
 
 	<div class="entry-content">
 		<?php
