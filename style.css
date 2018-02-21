@@ -5,7 +5,7 @@
  Author:         Edward Zivkovic
  Author URI:     http://www.ezau.com/
  Template:       twentyseventeen
- Version:        1.0.101
+ Version:        1.0.102
 */
 
 /* Add Custom CSS after this line */
@@ -14,7 +14,7 @@ p {
 }
 
 /* FOOTER STYLES */
-footer {
+.site-footer {
   background-color: #E5E5E5;
   padding: 60px 0 45px 0;
 }
@@ -30,25 +30,36 @@ footer {
   width: auto;
 }
 
-footer .widget {
+.site-footer .widget {
   padding-bottom: 0;
 }
 
-footer .widget ul  {
+.site-footer .widget ul  {
   list-style-type: none;
   margin: 0;
 }
 
-footer .widget ul li, .site-info  {
+.site-footer .widget ul li, .site-info  {
   float: left;
   margin-right: 3%;
 }
 
-footer .widget ul li:last-child {
+.site-footer .widget ul li:last-child {
   margin-right: 0;
 }
 
 .site-info, .footer-nav {
   width: auto;
   text-transform: uppercase;
+}
+
+
+/* EXHIBITIONS */
+.post-type-archive-exhibitions #primary {
+  width: auto !important;
+}
+
+.post-type-archive-exhibitions article {
+  float: left;
+  width: 48%;
 }
