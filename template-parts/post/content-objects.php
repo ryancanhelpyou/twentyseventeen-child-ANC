@@ -30,7 +30,7 @@
 
 	<?php if ( '' !== get_the_post_thumbnail()  ) : ?>
 		<div class="post-thumbnail">
-			<a href="<?php the_permalink(); ?>">
+			<a href="<?php $src = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full', false );echo $src[0];?>">
 				<?php the_post_thumbnail( 'medium' ); ?>
 			</a>
 		</div><!-- .post-thumbnail -->

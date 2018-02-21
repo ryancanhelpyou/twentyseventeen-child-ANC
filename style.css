@@ -5,7 +5,7 @@
  Author:         Edward Zivkovic
  Author URI:     http://www.ezau.com/
  Template:       twentyseventeen
- Version:        1.0.11222
+ Version:        1.0.12332
 */
 
 /* Add Custom CSS after this line */
@@ -24,8 +24,6 @@
   	font-family: "Source Sans Pro", "Libre Franklin", "Helvetica Neue", helvetica, arial, sans-serif;
   	font-size: 18px;
   	font-size: 1rem;
-  	font-weight: 400;
-  	line-height: 1.66;
   }
 
 
@@ -39,6 +37,9 @@
   }
 
 
+  .site-content {
+    padding: 3em 0 0;
+  }
 
 
 
@@ -117,7 +118,11 @@
 }
 
 .post-type-archive-objects article h2 {
-  font-size: 80%;
+  font-size: 75%;
+}
+
+.post-type-archive-objects .entry-header {
+  margin-bottom: 1em;
 }
 
 .post-type-archive-objects .post-thumbnail {
