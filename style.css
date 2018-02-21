@@ -5,13 +5,42 @@
  Author:         Edward Zivkovic
  Author URI:     http://www.ezau.com/
  Template:       twentyseventeen
- Version:        1.0.102
+ Version:        1.0.11222
 */
 
 /* Add Custom CSS after this line */
-p {
-  margin: 1em 0;
-}
+
+/* SITE-WIDE */
+
+  p {
+    margin: 1em 0;
+  }
+
+  body,
+  button,
+  input,
+  select,
+  textarea {
+  	font-family: "Source Sans Pro", "Libre Franklin", "Helvetica Neue", helvetica, arial, sans-serif;
+  	font-size: 18px;
+  	font-size: 1rem;
+  	font-weight: 400;
+  	line-height: 1.66;
+  }
+
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Merriweather", serif;
+  }
+
+
+
+
 
 /* FOOTER STYLES */
 .site-footer {
@@ -62,4 +91,57 @@ p {
 .post-type-archive-exhibitions article {
   float: left;
   width: 48%;
+}
+
+
+/* OBJECTS - ARCHIVE */
+
+.post-type-archive-objects #secondary {
+  float: left !important;
+  width: 25% !important;
+}
+
+.post-type-archive-objects #primary {
+  float: right !important;
+  width: 70% !important;
+}
+
+.post-type-archive-objects article {
+  width: 30%;
+  margin-right: 1em;
+  float: left;
+}
+
+.post-type-archive-objects article:last-child {
+  margin-right: 0;
+}
+
+.post-type-archive-objects article h2 {
+  font-size: 80%;
+}
+
+.post-type-archive-objects .post-thumbnail {
+  margin-bottom: 0;
+}
+
+/* OBJECTS - single */
+
+.single-objects #primary {
+  width: auto !important;
+}
+
+.single-objects .post-thumbnail {
+  float: left;
+  width: 400px;
+}
+
+.single-objects .entry-header, .single-objects .entry-content {
+  float: right;
+  width: 50%;
+}
+
+.single-objects .entry-content .label {
+  font-size: 75%;
+  color: #777;
+  /* text-transform: uppercase; */
 }

@@ -27,11 +27,15 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php
-	if ( is_sticky() && is_home() ) :
-		echo twentyseventeen_get_svg( array( 'icon' => 'thumb-tack' ) );
-	endif;
-	?>
+
+	<?php if ( '' !== get_the_post_thumbnail()  ) : ?>
+		<div class="post-thumbnail">
+			<a href="<?php the_permalink(); ?>">
+				<?php the_post_thumbnail( 'medium' ); ?>
+			</a>
+		</div><!-- .post-thumbnail -->
+	<?php endif; ?>
+
 	<header class="entry-header">
 		<?php
 		if ( 'post' === get_post_type() ) {
@@ -58,19 +62,14 @@
 		?>
 	</header><!-- .entry-header -->
 
-	<?php if ( '' !== get_the_post_thumbnail() && ! is_single() ) : ?>
-		<div class="post-thumbnail">
-			<a href="<?php the_permalink(); ?>">
-				<?php the_post_thumbnail( 'twentyseventeen-featured-image' ); ?>
-			</a>
-		</div><!-- .post-thumbnail -->
-	<?php endif; ?>
-
 	<div class="entry-content">
-		<?php
-			echo 'Accession number: ' . $accessnum . '<br>';
 
-			echo 'Maker: ';
+		<p><span class="label">Accession number:</span><br>
+				<?php if ($accessnum) { echo $accessnum; } else { echo 'N/A'; } ?>
+		</p>
+
+		<?php
+			echo '<p><span class="label">Maker:</span>';
 			if( have_rows('maker_details') ):
 			    while ( have_rows('maker_details') ) : the_row();
 							$name = get_sub_field('name');
@@ -79,6 +78,8 @@
 								echo '<a href="/' . $name->taxonomy . '/' . $name->slug . '">';
 								echo $name->name;
 								echo '</a>';
+							} else {
+								 echo '<br>N/A';
 							}
 							$notes = get_sub_field('notes');
 							if ($notes) {
@@ -89,21 +90,42 @@
 			else :
 			   echo 'N/A';
 			endif;
-			echo '<br>';
+			echo '</p>'; ?>
 
-			echo 'Currently on view: ' . $onview . '<br>';
-			echo 'Historical period: ' . $hisperiod . '<br>';
-			the_terms( $post->ID, 'military_branch', 'Miltary branch: ', ', ', '<br>' );
-			the_terms( $post->ID, 'wars_conflicts', 'Wars and Conflicts: ', ', ', '<br>' );
-			the_terms( $post->ID, 'object_type', 'Type: ', ', ', '<br>' );
-			echo 'Dimensions: ' . $dims . '<br>';
-			echo 'Acquisition date: ' . $acqdate . '<br>';
-			echo 'Credit line: ' . $credline . '<br>';
-			the_terms( $post->ID, 'location', 'Location: ', ', ', '<br>' );
-			echo 'Provenance: ' . $provenance . '<br>';
-			echo 'Label:<br>' . $label;
-			// the_field('label');
+			<p><span class="label">Currently on view:</span><br>
+					<?php if ($onview) { echo $onview; } else { echo 'N/A'; } ?>
+			</p>
+			<p><span class="label">Historical period:</span><br>
+					<?php if ($hisperiod) { echo $hisperiod; } else { echo 'N/A'; } ?>
+			</p>
 
+			<?php
+			the_terms( $post->ID, 'military_branch', '<p><span class="label">Miltary branch:</span><br>', ', ', '</p>' );
+			the_terms( $post->ID, 'wars_conflicts', '<p><span class="label">Wars and Conflicts:</span><br>', ', ', '</p>' );
+			the_terms( $post->ID, 'object_type', '<p><span class="label">Type:</span><br>', ', ', '</p>' );
+			?>
+
+		<p><span class="label">Dimensions:</span><br>
+				<?php if ($dims) { echo $dims; } else { echo 'N/A'; } ?>
+		</p>
+		<p><span class="label">Acquisition date:</span><br>
+				<?php if ($acqdate) { echo $acqdate; } else { echo 'N/A'; } ?>
+		</p>
+		<p><span class="label">Credit line:</span><br>
+				<?php if ($credline) { echo $credline; } else { echo 'N/A'; } ?>
+		</p>
+
+		<?php
+			the_terms( $post->ID, 'location', '<p><span class="label">Location:</span><br>', ', ', '</p>' ); ?>
+
+		<p><span class="label">Provenance:</span><br />
+				<?php if ($provenance) { echo $provenance; } else { echo 'N/A'; } ?>
+		</p>
+		<p><span class="label">Label:</span><br />
+				<?php if ($label) { echo $label; } else { echo 'N/A'; } ?>
+		</p>
+
+		<?php
 		/* translators: %s: Name of current post */
 		the_content( sprintf(
 			__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'twentyseventeen' ),
